@@ -16,8 +16,12 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
     - name: create Dockerfile from template
-      run: envsubst < Dockerfile.template > Dockerfile
-
+      run: |
+        echo $POETRY_VERSION
+        envsubst < Dockerfile.template > Dockerfile
+      env:
+        PYTHON_VERSION: ${{ matrix.PYTHON_VERSION }}
+        POETRY_VERSION: ${{ matrix.POETRY_VERSION }}
     - name: Build and push Docker images
       uses: docker/build-push-action@v1
       with:
