@@ -1,5 +1,5 @@
 
-name: CI
+name: CD
 
 on:
   push:
@@ -15,6 +15,8 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+    - name: create Dockerfile from template
+      run: envsubst < Dockerfile.template > Dockerfile
 
     - name: Build and push Docker images
       uses: docker/build-push-action@v1
