@@ -18,6 +18,11 @@ jobs:
     - name: create Dockerfile from template
       run: |
         envsubst < Dockerfile.template > Dockerfile
+        if [[ "$PYTHON_VERSION" == 3.8 && "$POETRY_VERSION" == 1.0.10 ]]; then
+            export TAG=${{matrix.PYTHON_VERSION}}-${{matrix.POETRY_VERSION}},latest
+        else
+            export TAG=${{matrix.PYTHON_VERSION}}-${{matrix.POETRY_VERSION}}
+        fi
       env:
         PYTHON_VERSION: ${{ matrix.PYTHON_VERSION }}
         POETRY_VERSION: ${{ matrix.POETRY_VERSION }}
@@ -27,22 +32,5 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
         repository: tolgaeren/poetry-in-a-container
-        tags: ${{matrix.PYTHON_VERSION}}-${{matrix.POETRY_VERSION}}
-  tag-latest:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-    - name: create Dockerfile from template
-      run: |
-        envsubst < Dockerfile.template > Dockerfile
-      env:
-        PYTHON_VERSION: "3.8"
-        POETRY_VERSION: "1.0.10"
-    - name: Build and push Docker images
-      uses: docker/build-push-action@v1
-      with:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
-        repository: tolgaeren/poetry-in-a-container
-        tags: latest
+        tags: $TAG
+  
