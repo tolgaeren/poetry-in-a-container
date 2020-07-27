@@ -32,5 +32,5 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
         repository: tolgaeren/poetry-in-a-container
-        tags: ${{ env.$TAG }}
+        tags: ${{ env.TAG }}
   
