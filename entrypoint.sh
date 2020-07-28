@@ -5,7 +5,7 @@ set -e
 
 # Push current directory on to stack and cd (if possible) into working dir.
 pushd . > /dev/null 2>&1 || return
-cd "$GITHUB_WORKSPACE" || return
+cd "$INPUT_WORKING_DIRECTORY" || return
 echo working directory is: $PWD
 
 sh -c "poetry $*"
