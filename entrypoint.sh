@@ -7,6 +7,8 @@ set -e
 pushd . > /dev/null 2>&1 || return
 cd "$INPUT_WORKING_DIRECTORY" || return
 echo working directory is: $INPUT_WORKING_DIRECTORY
+echo $PWD
+ls -al ..
 
 sh -c "poetry $*"
 
