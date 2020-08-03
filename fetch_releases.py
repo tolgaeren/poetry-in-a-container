@@ -65,14 +65,14 @@ if __name__ == "__main__":
     
 
     args = parser.parse_args()
-    pipenvs = fetch_releases(**vars(args))
+    repo_names = fetch_releases(**vars(args))
     pythons = [3.8, 3.7, 3.6]
-    repo_for_matrix = f"{args.name.upper()}_VERSION"
+    repo_name_for_matrix = f"{args.name.upper()}_VERSION"
     matrix = {
         "include": [
-            {repo_for_matrix: pipenv_version, "PYTHON_VERSION": python_version}
+            {repo_name_for_matrix: repo_name_version, "PYTHON_VERSION": python_version}
             for python_version in pythons
-            for pipenv_version in pipenvs
+            for repo_name_version in repo_names
         ]
     }
     print(json.dumps(matrix))
