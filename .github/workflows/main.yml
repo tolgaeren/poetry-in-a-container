@@ -21,7 +21,7 @@ jobs:
     - run: poetry install
     - id: set-matrix
       run: |
-        OUTPUT=$(pipenv run python fetch_releases.py --owner python-poetry --name poetry --last_n 5 --token ${{ secrets.TOKEN }})
+        OUTPUT=$(poetry run python fetch_releases.py --owner python-poetry --name poetry --last_n 5 --token ${{ secrets.TOKEN }})
         echo "::set-output name=matrix::$OUTPUT"
   build-all-images:
     needs: fetch_releases
