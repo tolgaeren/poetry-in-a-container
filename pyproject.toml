@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "poetry-in-a-container"
+version = "0.1.0"
+description = ""
+authors = ["Tolga Eren <tolgaeren@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+python-graphql-client = "^0.3.0"
+
+[tool.poetry.dev-dependencies]
+black = "^19.10b0"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
