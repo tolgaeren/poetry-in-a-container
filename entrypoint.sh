@@ -8,7 +8,7 @@ pushd . > /dev/null 2>&1 || return
 cd "$INPUT_WORKING_DIRECTORY" || return
 echo working directory is: $PWD
 
-sh -c "poetry $*"
+sh -c "$*"
 
 # Step back to starting directory.
 popd > /dev/null 2>&1 || return
