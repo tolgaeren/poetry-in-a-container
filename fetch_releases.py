@@ -66,7 +66,7 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     repo_names = fetch_releases(**vars(args))
-    pythons = [3.8, 3.7, 3.6]
+    pythons = [3.8, 3.9, 3.7]
     repo_name_for_matrix = f"{args.name.upper()}_VERSION"
     matrix = {
         "include": [
